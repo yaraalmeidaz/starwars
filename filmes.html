@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Star Wars | Films</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Fontes -->
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@200;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geo:ital@0;1&display=swap" rel="stylesheet">
+
+    <!-- Ícones -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+</head>
+
+<body class="filmes-page">
+
+    <!-- HERO + NAVBAR -->
+    <header class="hero-page">
+        <nav class="navbar navbar-dark navbar-expand-lg sw-navbar">
+            <div class="container justify-content-center">
+
+                <!-- ESQUERDA -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
+                    <li class="nav-item"><a class="nav-link active-page" href="filmes.html">FILMS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="personagens.html">CHARACTERS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="especies.html">SPECIES</a></li>
+                </ul>
+
+                <!-- LOGO CENTRAL -->
+                <a class="navbar-brand mx-4" href="index.html">
+                    <img src="assets/img/logo-starwars.png" height="50">
+                </a>
+
+                <!-- DIREITA -->
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="planetas.html">PLANETS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="espaconaves.html">SPACESHIPS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="veiculos.html">VEHICLES</a></li>
+                </ul>
+
+                <!-- LOGO MOBILE -->
+                <a class="navbar-brand mobile-logo" href="index.html">
+                    <img src="assets/img/logo-starwars.png" height="40">
+                </a>
+
+                <!-- BOTÃO MOBILE -->
+                <button class="mobile-menu-btn">
+                    <i class="bi bi-list"></i>
+                </button>
+
+            </div>
+        </nav>
+
+        <!-- MENU MOBILE -->
+        <div class="mobile-menu">
+            <a href="filmes.html">FILMS</a>
+            <a href="personagens.html">CHARACTERS</a>
+            <a href="especies.html">SPECIES</a>
+            <a href="planetas.html">PLANETS</a>
+            <a href="espaconaves.html">SPACESHIPS</a>
+            <a href="veiculos.html">VEHICLES</a>
+        </div>
+
+        <!-- SCRIPT MENU MOBILE -->
+        <script>
+            const btn = document.querySelector(".mobile-menu-btn");
+            const menu = document.querySelector(".mobile-menu");
+            const links = document.querySelectorAll(".mobile-menu a");
+            const navbarLinks = document.querySelectorAll(".sw-navbar a");
+
+            btn.addEventListener("click", () => {
+                menu.classList.toggle("open");
+                btn.classList.toggle("open");
+            });
+
+            links.forEach(l => l.addEventListener("click", () => menu.classList.remove("open")));
+            navbarLinks.forEach(l => l.addEventListener("click", () => menu.classList.remove("open")));
+            window.addEventListener("scroll", () => menu.classList.remove("open"));
+        </script>
+
+        <!-- BUSCA GLOBAL -->
+        <section class="home-busca">
+            <form id="form-busca-global" class="d-flex justify-content-center">
+                <div class="home-busca-wrapper">
+                    <input 
+                        type="text" 
+                        id="input-busca-global"
+                        class="home-busca-real"
+                        placeholder=" "
+                        autocomplete="off"
+                    />
+
+                    <span class="home-busca-placeholder">
+                        <label>Search</label> your feelings young one
+                    </span>
+
+                    <button class="home-busca-btn" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </form>
+        </section>
+    </header>
+
+
+   <section class="filmes-intro">
+
+    <img src="assets/img/logo-filmes-ve.png" class="sw-logo-img">
+
+    <div class="sw-box">
+            <p>
+                Star Wars é um épico espacial criado por George Lucas que transformou a cultura pop
+                ao unir mitologia moderna, tecnologia inovadora e personagens inesquecíveis. A trilogia
+                original — Uma Nova Esperança (1977), O Império Contra-Ataca (1980) e O Retorno de Jedi (1983) — narra o despertar da Força em Luke Skywalker.
+            </p>
+            <p>
+                A jornada do jovem fazendeiro até se tornar um Jedi ecoa temas de coragem, destino
+                e redenção, enquanto a galáxia vive sob a sombra do Império Galáctico. Com aliados
+                como Han Solo, Leia Organa e Chewbacca, a luta pela liberdade se torna “maior do que qualquer estrela”.
+            </p>
+            <p>
+                A ameaça representada por Darth Vader e Palpatine elevou o conflito para além do
+                físico, explorando o equilíbrio entre o Lado Luminoso e o Lado Sombrio. “Eu sou seu pai”
+                tornou-se uma frase eternizada, símbolo de um dos maiores momentos da história do cinema.
+            </p>
+    </div>
+   </section>
+ 
+
+    <!-- LISTA -->
+    <main class="container py-5">
+        <div id="lista" class="row justify-content-center g-5"></div>
+    </main>
+
+    <!-- MODAL UNIVERSAL -->
+    <div class="modal fade" id="modalInfo" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content dark-modal">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" id="modalTitulo"></h5>
+                    <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="modalConteudo"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RODAPÉ -->
+    <footer class="sw-footer text-center py-4">
+        <small>© 2025 Star Wars Project • Desenvolvido por Luana Martins e Yara Almeida</small>
+    </footer>
+
+    <script src="assets/js/swapi-universal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

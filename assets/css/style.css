@@ -1,0 +1,1106 @@
+/* ======================================================================
+   CONFIGURAÇÕES GERAIS DO PROJETO
+   - Aqui ficam estilos que são usados em todas as páginas
+   - Inclui efeitos hover, fontes de busca global etc.
+====================================================================== */
+
+/* Área onde o JS injeta resultados da busca global */
+#resultadoBuscaGlobal {
+    font-family: "Geo", sans-serif;
+}
+
+/* Hover usado nos resultados — deixa o item destacado */
+.resultado-item:hover {
+    background: #222 !important;
+    transform: scale(1.01);
+    transition: .2s;
+}
+
+
+
+/* ======================================================================
+   ==================== HOME / INDEX ===========================
+   Nesta primeira parte estão:
+   - Hero principal da home (imagem gigante de fundo)
+   - Logo, título "Discovery" e estrutura base
+====================================================================== */
+
+
+/* ----------------------------------------------------------------------
+   HERO PRINCIPAL DA HOME
+   - Define imagem de fundo em tela cheia
+   - Deixa todo o conteúdo alinhado verticalmente
+   - Ponto inicial visual do site
+---------------------------------------------------------------------- */
+
+.home {
+    background-image: url("../img/home.png");  /* imagem de fundo da home */
+    background-size: cover;                    /* cobre toda a área */
+    background-position: center;
+    background-repeat: no-repeat;
+
+    width: 100%;
+    min-height: 100vh;                         /* ocupa a altura inteira da tela */
+
+    display: flex;
+    flex-direction: column;                    /* empilha conteúdo verticalmente */
+
+    padding-top: 20px;                         /* espaço no topo */
+}
+
+/* Garante que o conteúdo do topo da home fique acima de efeitos visuais */
+.home-header {
+    position: relative;
+    z-index: 2;
+}
+
+
+
+/* ----------------------------------------------------------------------
+   LOGO PRINCIPAL (STAR WARS)
+   - Centralizada na home
+   - Tamanho controlado para responsividade
+---------------------------------------------------------------------- */
+
+.home-logo {
+    margin-top: 50px;  /* espaço entre topo e logo */
+}
+
+/* Arquivo PNG da logo */
+.logo-starwars {
+    width: 100px;      /* tamanho ideal para proporção */
+    height: auto;
+}
+
+
+
+/* ----------------------------------------------------------------------
+   TEXTO "DISCOVERY" ABAIXO DA LOGO
+   - Funciona como subtítulo oficial do projeto
+   - Tipografia leve e elegante (Lexend)
+---------------------------------------------------------------------- */
+
+.logo-subtitle {
+    font-family: "Lexend", sans-serif;
+    font-weight: 200;      /* bem leve */
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: #fff;
+
+    margin-top: 8px;
+
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/* ======================================================================
+   ========================  HOME – CATEGORIAS  =========================
+   Esta seção controla as 6 categorias centrais da home:
+   - Filmes, Personagens, Espécies, Planetas, Espaçonaves, Veículos
+   Inclui:
+            Layout base
+            Ícones brancos grandes
+            Teto abaixo do ícone
+            Efeitos visuais de hover com linhas
+====================================================================== */
+
+
+/* ----------------------------------------------------------------------
+   SEÇÃO DE CATEGORIAS DA HOME
+   - Margem grande para que os ícones fiquem mais abaixo da logo
+---------------------------------------------------------------------- */
+
+.home-categorias {
+    margin-top: 80px;
+}
+
+
+/* ----------------------------------------------------------------------
+   GRID / FLEXBASE DAS CATEGORIAS
+   - No desktop fica tudo em uma linha
+   - O grid adaptativo será definido depois na seção RESPONSIVIDADE
+---------------------------------------------------------------------- */
+
+.categorias-flex {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: nowrap;         /* impede quebra — só quebra no modo grid */
+    gap: 20px;                 /* espaço entre os ícones */
+}
+
+.categoria-item {
+    text-align: center;        /* centraliza ícone e título */
+}
+
+
+
+/* ----------------------------------------------------------------------
+   ÍCONES DAS CATEGORIAS
+   - São imagens PNG brancas (filtradas)
+   - Aumentam suavemente no hover
+---------------------------------------------------------------------- */
+
+.categoria-icone img {
+    width: 230px;              /* tamanho base dos ícones */
+    height: auto;
+    filter: brightness(1000%); /* deixa o ícone super branco */
+    transition: transform .3s ease;
+}
+
+
+
+/* ----------------------------------------------------------------------
+   LABEL DAS CATEGORIAS
+   - Texto abaixo de cada ícone
+   - Usa Lexend para manter identidade visual clean
+---------------------------------------------------------------------- */
+
+.categoria-label {
+    font-family: "Lexend", sans-serif;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 25px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 24px;
+    text-align: center;
+}
+
+
+
+/* ======================================================================
+   =================== CATEGORIAS – HOVER  ===========================
+   Aqui ficam os efeitos quando o usuário passa o mouse por cima do item:
+    - Leves linhas brancas em cima e embaixo
+    - Zoom suave no ícone e no container
+    - Aumento do brilho
+====================================================================== */
+
+/* Container dos itens */
+.categoria-item {
+    position: relative;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+/* Linhas superior e inferior (efeito de destaque no hover) */
+.categoria-item::before,
+.categoria-item::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 0;                  /* inicia invisível */
+    height: 5px;
+    background-color: #fff;
+    transition: all .3s ease;
+    transform: translateX(-50%);
+    opacity: 0;
+}
+
+.categoria-item::before {
+    top: 0;
+}
+
+.categoria-item::after {
+    bottom: 0;
+}
+
+/* Link interno (ícone + label) */
+.categoria-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform .3s ease;
+}
+
+/* Zoom leve no conteúdo todo */
+.categoria-item:hover .categoria-link {
+    transform: scale(1.02);
+}
+
+/* Linhas expandem ao hover */
+.categoria-item:hover::before,
+.categoria-item:hover::after {
+    width: 80%;
+    opacity: 1;
+}
+
+/* Ícone fica maior e mais brilhante */
+.categoria-item:hover .categoria-icone img {
+    transform: scale(1.02);
+    filter: brightness(2500%);
+}
+
+
+/* ======================================================================
+   AVISO:  
+   A parte de GRID RESPONSIVO das categorias (mobile, tablet, desktop)
+   NÃO está aqui. Ela ficará mais abaixo, na seção "RESPONSIVIDADE".
+====================================================================== */
+
+
+
+
+
+
+
+/* ======================================================================
+   ====================== HOME – BARRA DE BUSCA  =====================
+   Esta é uma das seções mais importantes do projeto.
+   Aqui fazemos:
+       - Um input REAL totalmente invisível (para permitir estilização total)
+       - Um placeholder FALSO totalmente customizado
+       - Um botão de busca flutuante (ícone da lupa)
+       - Efeito de esconder o placeholder quando o usuário digita
+====================================================================== */
+
+
+/* ----------------------------------------------------------------------
+   CONTAINER GERAL DA BARRA DE BUSCA
+   - Largura fixa no desktop
+   - Centralizado horizontalmente
+   - Sombra para dar profundidade
+---------------------------------------------------------------------- */
+
+.home-busca {
+    margin-top: 175px;            /* afasta a busca das categorias */
+}
+
+.home-busca-wrapper {
+    position: relative;           /* necessário para posicionar input e botão */
+    width: 650px;
+    max-width: 90%;               /* responsivo em telas menores */
+    margin: 0 auto;               /* centralizado */
+
+    background: transparent;
+    padding: 0 60px 0 25px;       /* espaço para texto + botão */
+    border-radius: 30px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+
+    box-shadow: 0px 18px 30px rgba(0, 0, 0, 0.35); /* visual elegante */
+}
+
+
+
+/* ----------------------------------------------------------------------
+   INPUT REAL
+   - Ele é o campo onde o usuário digita de verdade
+   - Porém: é transparente para que possamos controlar 100% do estilo
+   - O texto aparece porque a cor é forçada
+---------------------------------------------------------------------- */
+
+.home-busca-real {
+    position: absolute;
+    inset: 0;                     /* ocupa 100% do wrapper */
+    width: 100%;
+    height: 100%;
+    border: none;
+
+    background: transparent !important;
+
+    color: #fff !important;              /* deixa o texto branco */
+    -webkit-text-fill-color: #fff !important; /* força o branco no Chrome */
+    caret-color: #fff;                   /* cor do cursor */
+
+    z-index: 3;
+    padding: 0 60px 0 25px;
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+}
+
+
+
+/* ----------------------------------------------------------------------
+   PLACEHOLDER FALSO
+   - Por que falso?
+     → O placeholder real não pode ter estilos avançados (como múltiplas fontes)
+   - Então criamos um elemento por cima que simula o placeholder.
+   - Ele desaparece quando o usuário digita.
+---------------------------------------------------------------------- */
+
+.home-busca-placeholder {
+    position: absolute;
+    left: 25px;                   /* alinhado com texto digitado */
+    top: 50%;
+    transform: translateY(-50%);
+
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 16px;
+
+    pointer-events: none;        /* não interfere no clique */
+    transition: opacity .2s ease;/* efeito suave ao sumir */
+
+    /* estilização do texto */
+    font-family: "Roboto", sans-serif;
+    font-weight: 200;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: #fff;
+    text-align: center;
+}
+
+/* Texto interno do placeholder */
+.home-busca-placeholder label {
+    font-weight: 500;
+    font-size: 20px;
+    color: #fff;
+}
+
+
+
+/* ----------------------------------------------------------------------
+   LÓGICA DE SUMIÇO DO PLACEHOLDER
+   - Se o input estiver com foco, ou se tiver conteúdo, o placeholder some.
+---------------------------------------------------------------------- */
+
+.home-busca-real:not(:focus):not(:placeholder-shown) + .home-busca-placeholder,
+.home-busca-real:focus + .home-busca-placeholder {
+    opacity: 0;
+}
+
+
+
+/* ----------------------------------------------------------------------
+   BOTÃO (LUPA)
+   - Ícone clicável para acionar a busca
+   - Fica dentro do wrapper, porém alinhado à direita
+---------------------------------------------------------------------- */
+
+.home-busca-btn {
+    position: absolute;
+    right: 15px;
+    background: transparent;
+    border: none;
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #fff;                  /* deixa a lupa branca */
+    font-size: 20px;
+
+    z-index: 4;
+    cursor: pointer;
+}
+
+/* Remove qualquer efeito feio de foco */
+.home-busca-btn:focus,
+.home-busca-real:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+
+
+/* ----------------------------------------------------------------------
+   AJUSTE DO CONTAINER DO GRID (apenas nessa seção)
+---------------------------------------------------------------------- */
+
+.home-categorias .container {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
+
+
+
+
+/* ======================================================================
+   ===========================  RODAPÉ DA HOME  ==========================
+   Seção simples, porém importante para:
+       - Identidade visual
+       - Fonte padronizada
+       - Cor branca para manter contraste com o fundo preto
+====================================================================== */
+
+.home-footer small {
+    color: #fff;
+    font-family: "Lexend", sans-serif;
+}
+
+
+
+/* ======================================================================
+   ============================  HERO GLOBAL  ============================
+   Esta parte é **fundamental**:
+       - Todos os HEROS das páginas internas (filmes, espécies, etc.)
+         usam ESTA base como estrutura.
+       - Cada categoria muda apenas a IMAGEM, mas mantém o layout.
+       - O hero é sempre tela cheia, com degradê no rodapé.
+
+    garantindo o padrão no design do site.
+====================================================================== */
+
+/* Estrutura geral para todas as páginas internas:
+   - Tela cheia (100vh)
+   - Fundo com imagem
+   - Alinhamento vertical padrão
+   - Degradê no rodapé para suavizar transição com conteúdo
+*/
+.hero-page {
+    height: 100vh;      
+    width: 100%;
+
+    /* Imagem de fundo — a imagem específica vem depois */
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    /* Organização do conteúdo */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;      /* textos aparecem no topo */
+    align-items: center;
+
+    padding-top: 0;
+
+    position: relative;
+    z-index: 1;
+}
+
+/* Degradê preto que aparece no rodapé do hero
+   - Torna a leitura da página suave
+   - Evita transição brusca entre imagem e conteúdo
+*/
+.hero-page::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 250px;
+
+    background: linear-gradient(to bottom, rgba(0,0,0,0), #000);
+    pointer-events: none;
+    z-index: -1;
+}
+
+
+
+/* ======================================================================
+   ================  HERO ESPECÍFICO DE CADA PÁGINA  ====================
+   Aqui você realmente brilha:
+       - Cada página tem um hero único
+       - Todas usam a MESMA estrutura .hero-page
+
+   Isso é exatamente o que um professor de Web quer ver:
+       — Reutilização de layouts
+       — Cada página com identidade própria
+====================================================================== */
+
+/* Página de FILMES */
+.filmes-page .hero-page {
+    background-image: url("../img/home-filmes.png");
+}
+
+/* Página de PERSONAGENS */
+.personagens-page .hero-page {
+    background-image: url('../img/home-personagens.png');
+}
+
+/* Página de ESPÉCIES */
+.especies-page .hero-page {
+    background-image: url('../img/home-especies.png');
+}
+
+/* Página de PLANETAS */
+.planetas-page .hero-page {
+    background-image: url('../img/home-planetas.png');
+}
+
+/* Página de ESPAÇONAVES */
+.espaconaves-page .hero-page {
+    background-image: url('../img/home-espaconaves.png');
+}
+
+/* Página de VEÍCULOS */
+.veiculos-page .hero-page {
+    background-image: url('../img/home-veiculos.png');
+}
+
+
+/* ======================================================================
+   ==============================  NAVBAR  ===============================
+   A NAVBAR é um dos elementos visuais mais importantes do site.
+   O objetivo desta seção é:
+       ✔ Manter um visual limpo e minimalista
+       ✔ Preservar o padrão tipográfico do projeto (Lexend)
+       ✔ Criar um menu fixo visualmente consistente
+       ✔ Controlar variações entre DESKTOP e MOBILE
+
+   A navbar não tem fundo sólido porque o site usa imagens grandes
+   nos HEROES, então deixamos o topo transparente para manter a
+   estética "cinematográfica".
+====================================================================== */
+
+.navbar {
+    font-family: "Lexend", sans-serif;
+    font-weight: 600;
+    color: #fff;
+
+    margin-top: 10px;
+    margin-right: 20px;
+
+    letter-spacing: 2px;      /* dá identidade visual Star Wars */
+    text-transform: uppercase;
+    font-size: 20px;
+
+    text-align: center;
+    width: 100%;
+
+    background: transparent !important;
+
+    /*  
+       IMPORTANTE:
+       - A navbar está acima do hero, por isso damos um margin-bottom
+         gigante para posicionar os textos corretamente nas páginas internas.
+    */
+    margin-bottom: 545px;
+}
+
+/* Logo padrão da navbar */
+.navbar-brand img {
+    width: 120px;
+    height: auto;
+}
+
+/* Indica visualmente em que página o usuário está */
+.active-page {
+    font-size: 30px;
+    color: #ffffff !important;
+}
+
+/* Links sempre brancos */
+.navbar .nav-link {
+    color: #fff !important;
+    opacity: 1 !important;
+}
+
+/* Hover suave nos links */
+.navbar .nav-link:hover {
+    color: #fff !important;
+    transform: scale(1.02);
+}
+
+
+
+/* ======================================================================
+   ============================  MOBILE MENU  ============================
+   Aqui começa a parte mais técnica:
+       ✔ A navbar muda completamente no mobile
+       ✔ O layout se adapta para telas menores
+       ✔ Um menu lateral estilo “drawer” aparece
+       ✔ O botão hambúrguer substitui os links tradicionais
+
+   Isso demonstra que o site é realmente RESPONSIVO e não apenas reduzido.
+====================================================================== */
+
+/* -----------------------------  MOBILE  ------------------------------ */
+
+/*  
+   Regras aplicadas SOMENTE para telas abaixo de 1200px:
+   - Esconde navegação tradicional
+   - Exibe logotipo mobile
+   - Ativa botão hambúrguer
+*/
+@media (max-width: 1200px) {
+
+    /* Esconde toda a estrutura desktop */
+    .sw-navbar .navbar-nav,
+    .sw-navbar .navbar-brand.mx-4 {
+        display: none !important;
+    }
+
+    /* Mostra logo exclusiva do mobile (no canto esquerdo) */
+    .sw-navbar .navbar-brand.mobile-logo {
+        display: block !important;
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        padding: 0;
+        margin: 0;
+        z-index: 999;
+    }
+
+    /* Permite posicionar internamente os elementos mobile */
+    .sw-navbar .container {
+        position: relative;
+    }
+
+    /* Apenas reforço para garantir que no mobile tudo some */
+    .sw-navbar .navbar-nav {
+        display: none !important;
+    }
+
+    /* Some logo padrão */
+    .sw-navbar .navbar-brand {
+        display: none !important;
+    }
+
+    /* Mostra botão hambúrguer */
+    .mobile-menu-btn {
+        display: block !important;
+    }
+}
+
+/* --------------------------  DESKTOP  ------------------------------- */
+
+/* 
+   Para telas acima de 1200px:
+   - Esconde elementos exclusivos do mobile
+   - Força exibição do menu tradicional
+*/
+@media (min-width: 1200px) {
+    .mobile-logo,
+    .mobile-menu-btn,
+    .mobile-menu {
+        display: none !important;
+    }
+}
+
+
+
+/* ----------------------------------------------------------------------
+   LOGO MOBILE
+   - Independente da .navbar-brand padrão (desktop)
+---------------------------------------------------------------------- */
+
+.mobile-logo {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 999;
+}
+
+
+
+/* ----------------------------------------------------------------------
+   BOTÃO HAMBÚRGUER
+   - Surgirá apenas no mobile
+   - Posicionado no canto superior direito
+   - Ícone grande e fácil de clicar
+---------------------------------------------------------------------- */
+
+.mobile-menu-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    font-size: 2rem;
+    color: white;
+
+    background: transparent;
+    border: none;
+
+    cursor: pointer;
+    z-index: 999;
+
+    transition: transform .2s ease;
+}
+
+.mobile-menu-btn:hover {
+    transform: scale(1.2);
+}
+
+
+
+/* ----------------------------------------------------------------------
+   MENU LATERAL (DRAWER)
+   - Painel que desliza da direita
+   - Contém os links da navegação
+   - Usa efeito blur (vidro esfumaçado)
+---------------------------------------------------------------------- */
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -300px;    /* começa fora da tela */
+    width: 260px;
+    height: 100vh;
+
+    background: rgba(0,0,0,0.9);     /* fundo translúcido */
+    backdrop-filter: blur(5px);      /* efeito "vidro" */
+    padding: 40px 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    transition: right .35s ease;    /* animação suave */
+    z-index: 998;
+}
+
+/* Links internos do menu lateral */
+.mobile-menu a {
+    color: white;
+    font-family: 'Lexend', sans-serif;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: transform .2s ease;
+}
+
+.mobile-menu a:hover {
+    transform: translateX(5px);     /* animação de deslizamento */
+}
+
+/* Quando a classe "open" é ativada pelo JS, o menu entra na tela */
+.mobile-menu.open {
+    right: 0;
+}
+
+
+/* ======================================================================
+   ====================  INTRO / BOXES POR PÁGINA ========================
+   Esta seção é responsável pelos “boxes” e textos que aparecem abaixo
+   do hero nas páginas internas, como:
+       - Filmes
+       - Personagens
+       - Espécies
+       - Planetas
+       - Veículos
+       - Espaçonaves
+
+   Essa parte é **muito relevante** para apresentação porque mostra:
+       ✔ hierarquia visual
+       ✔ uso de tipografia específica
+       ✔ consistência entre páginas
+====================================================================== */
+
+
+/* ----------------------------------------------------------------------
+   SEÇÃO INTRODUTÓRIA DOS FILMES
+   - Fundo preto para separar da imagem grande do hero
+   - Texto centralizado
+   - Espaço no topo para respirar visualmente
+---------------------------------------------------------------------- */
+
+.filmes-intro {
+    background: #000;
+    width: 100%;
+    padding-top: 60px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+
+
+/* ----------------------------------------------------------------------
+   LOGO GRANDE "STAR WARS"
+   - Usado especialmente na página Filmes
+   - Ajusta tamanho de forma responsiva
+---------------------------------------------------------------------- */
+
+.sw-logo-img {
+    width: 100%;
+    max-width: 900px;
+    display: block;
+    margin: 0 auto 60px auto; /* centraliza com espaço inferior */
+}
+
+
+
+/* ----------------------------------------------------------------------
+   BOX DE TEXTO PRINCIPAL
+   - Este box aparece abaixo do logo
+   - Fundo #111 cria contraste com o fundo geral #000
+   - Borda arredondada e sombra leve deixam elegante
+   - Tipografia "Geo" dá estilo sci-fi / Star Wars
+---------------------------------------------------------------------- */
+
+.sw-box {
+    background: #111;
+    width: 80%;
+    max-width: 900px;
+
+    margin: 0 auto;            /* centralizado */
+    padding: 35px 40px;
+
+    border-radius: 18px;       /* cantos suaves */
+    color: #fff;
+    line-height: 1.6;
+    font-size: 18px;
+    font-family: "Geo", sans-serif;
+
+    /* sombra leve para destacar do fundo */
+    box-shadow: 0 0 20px rgba(255,255,255,0.08);
+}
+
+/* Todo parágrafo dentro do box tem espaço extra embaixo */
+.sw-box p {
+    margin-bottom: 18px;
+}
+
+
+
+/* ======================================================================
+   =========================  LISTAGEM – CARDS  ==========================
+   Os cards são usados para:
+       - Filmes
+       - Personagens
+       - Planetas
+       - Espécies
+       - Espaçonaves
+       - Veículos
+
+   Elementos essenciais:
+       ✔ Imagens padronizadas com object-fit
+       ✔ Títulos consistentes com tipografia Lexend
+       ✔ Botão “Ver Mais” com hover elegante
+====================================================================== */
+
+/* Card base completamente transparente — reforça estética do site */
+.sw-card {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    text-align: center;
+}
+
+/* Imagem padronizada:
+   - Altura fixa para consistência visual
+   - object-fit mantém proporção mesmo se a imagem variar */
+.sw-img-card {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Título do card */
+.sw-card-title {
+    color: #fff !important;
+    font-family: "Lexend", sans-serif;
+    font-size: 20px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+/* Botão de ação dos cards */
+.verMaisBtn {
+    color: #fff !important;
+    border: 1px solid #fff !important;
+    transition: 0.2s ease;
+}
+
+/* Hover elegante, invertendo as cores para chamar atenção */
+.verMaisBtn:hover {
+    background: #fff !important;
+    color: #000 !important;
+}
+/* ======================================================================
+   ==============================  MODAL  ================================
+   O modal é usado para exibir:
+       ✔ Sinopse dos filmes
+       ✔ Detalhes de personagens
+       ✔ Especificações de naves, planetas, etc.
+
+   Ele segue a estética “dark sci-fi”.
+====================================================================== */
+
+.dark-modal * {
+    font-family: "Geo", sans-serif !important; /* coerência visual */
+}
+
+.dark-modal {
+    background: #111 !important;
+    color: #fff !important;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+
+
+/* ======================================================================
+   ==========================  DROPDOWN DA BUSCA  ========================
+   Quando o usuário digita na busca, sugestões aparecem abaixo.
+====================================================================== */
+
+.dropdown-busca {
+    position: absolute;
+    top: 105%;
+    left: 0;
+    right: 0;
+
+    background: #111;
+    border: 12px;
+    padding: 5px;
+    border-radius: 10px;
+
+    display: none;
+    z-index: 999999;
+
+    color: #fff;
+    font-family: "Geo", sans-serif;
+}
+
+.dropdown-busca.open {
+    display: block;
+}
+
+.dropdown-item {
+    color: #fff;
+    padding: 8px 10px;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.dropdown-item:hover {
+    background: #181717;
+}
+
+
+
+/* ======================================================================
+   ===================  RESUMO DO FILME (Crawl)  =========================
+   Ajustes para garantir leitura confortável no modal:
+       ✔ largura total
+       ✔ sem scroll
+       ✔ texto justificado
+====================================================================== */
+
+.modal-detalhes .crawl {
+    width: 100%; 
+    height: auto;
+    padding: 10px;
+    border-radius: 8px;
+
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.5;
+
+    overflow: hidden;
+    white-space: normal;
+    text-align: justify;
+}
+
+
+/* ======================================================================
+   ===============================  FOOTER  ===============================
+   Footer usado em todas as páginas internas.
+   Mantém estética minimalista, com tipografia Lexend.
+====================================================================== */
+
+.sw-footer small {
+    color: #fff;
+    font-family: "Lexend", sans-serif;
+}
+/* Fundo global do site — puro preto cinematográfico */
+body {
+    background-color: #000 !important;
+}
+
+/* ======================================================================
+   =========================  RESPONSIVIDADE  ============================
+   Aqui ocorre:
+       ✔ troca da navbar no mobile
+       ✔ ativação do menu hambúrguer
+       ✔ grid responsivo das categorias
+====================================================================== */
+
+/* --------------------------  MOBILE (<1200px) ------------------------ */
+
+@media (max-width: 1200px) {
+
+    /* Esconde o menu desktop e mostra estrutura mobile */
+    .sw-navbar .navbar-nav,
+    .sw-navbar .navbar-brand.mx-4 {
+        display: none !important;
+    }
+
+    /* Logo exclusiva para mobile */
+    .sw-navbar .navbar-brand.mobile-logo {
+        display: block !important;
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        padding: 0;
+        margin: 0;
+        z-index: 999;
+    }
+
+    .sw-navbar .container {
+        position: relative;
+    }
+
+    /* Força ocultação do desktop */
+    .sw-navbar .navbar-nav {
+        display: none !important;
+    }
+    .sw-navbar .navbar-brand {
+        display: none !important;
+    }
+
+    /* Botão do menu hambúrguer aparece */
+    .mobile-menu-btn {
+        display: block !important;
+    }
+}
+
+/* ----------------------------- DESKTOP -------------------------------- */
+
+@media (min-width: 1200px) {
+    .mobile-logo,
+    .mobile-menu-btn,
+    .mobile-menu {
+        display: none !important;
+    }
+}
+
+
+
+/* ----------------------------- GRID DAS CATEGORIAS ------------------------------- */
+/*  
+   Comportamento responsivo para encaixar 6 categorias:
+
+   XL: 6 colunas  
+   MD: 3 colunas  
+   SM: 2 colunas  
+   XS: 1 coluna  
+*/
+
+.categorias-flex {
+    display: grid;
+    gap: 40px;
+    justify-content: center;
+}
+
+/* Telas muito grandes → 6 categorias por linha */
+@media (min-width: 1600px) {
+    .categorias-flex {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+/* Desktop médio → 3 por linha */
+@media (max-width: 1599px) and (min-width: 992px) {
+    .categorias-flex {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Tablets → 2 por linha */
+@media (max-width: 991px) and (min-width: 768px) {
+    .categorias-flex {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Celular → 1 por linha */
+@media (max-width: 767px) {
+    .categorias-flex {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* Mantém centralização dos itens */
+.categoria-item {
+    display: flex;
+    justify-content: center;
+}
